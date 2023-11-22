@@ -33,7 +33,7 @@ function pivot(A::Array{Float64})
                 temp2=P[p,:]
                 P[p,:]=P[r,:]
                 P[r,:]=temp2
-                break #break the loop
+                
             end
         end
     end
@@ -45,9 +45,8 @@ display(A_p)
 display(P)
 function decomp(U::Array{Float64})
     n=size(U,1)
-    L = zeros(n,n)
-    for p=1:n #for each pivot p        
-        L[p,p]=1 #convert matrix to identity matrix
+    L = Matrix{Float64}(I,n,n) #Initialise the L matrix as identity
+    for p=1:n #for each pivot p                
         for r=p+1:n #for each row below pivot
             m=U[r,p]/U[p,p] #calculate the ratio
             L[r,p]=m #replace the pth element of row r with the ratio
@@ -66,15 +65,10 @@ A_p,P=pivot(A)
 U,L= decomp(A_p)
 
 #print the results
-println("Upper Triangular matrix is:")
-display(U)
-println("Lower Triangular matrix is:")
-display(L)
 println("Product is :")
 M=L*U
-display(M)
-println("Permutation matrix is:")
-display(P)
+println("Permutation matrix is:") 
+P
 println("OG was :")
 OG
 C=P*OG

@@ -17,7 +17,7 @@ function monte_carlo(f::Function, N::Int64, a::Float64, b::Float64)
         x = rand()
         y = rand()
         fbar += f(a+x*(b-a), a+y*(b-a))
-        f2bar += f(a+x*(b-a), a+y*(b-a))^2
+        f2bar += fbar^2
     end
     return (b-a)^2*fbar/N, sqrt((f2bar/N - (fbar/N)^2))/(N-1)
 end
