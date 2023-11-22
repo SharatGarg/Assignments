@@ -6,9 +6,9 @@ function f(x::Float64)
 end
     
 function bisection(range_lower::Float64,range_upper::Float64,div_size::Float64)
-    er=0
-    num=(range_upper-range_lower)/div_size
-    z=Float64[]
+    er=0 #Error Code init
+    num=(range_upper-range_lower)/div_size #Number of intervals
+    z=Float64[] #Array to store zeroes
         for n in 1:num
             p1=range_lower+(n-1)*div_size
             p2=range_lower+n*div_size

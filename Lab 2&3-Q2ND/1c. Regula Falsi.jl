@@ -7,10 +7,14 @@ end
 
 #Defining the regula falsi method, to print best estimate after n iterations
 function regula(a::Float64, b::Float64, f::Function)
-    if f(a)*f(b)>=0
+    if f(a)*f(b)>0
         println("No root in the given interval")
+    else if f(a)==0
+        println("Root is ",a)
+    else if f(b)==0
+        println("Root is ",b)
     else
-        c=(a*f(b)-b*f(a))/(f(b)-f(a))
+        c=(a*f(b)-b*f(a))/(f(b)-f(a)) #First estimate, based on where slope of line joining (a,f(a)) and (b,f(b)) crosses x-axis
         while abs(f(c))>eps(Float32)
             c=(a*f(b)-b*f(a))/(f(b)-f(a))
             if f(a)*f(c)<0
